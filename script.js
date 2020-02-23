@@ -15,10 +15,11 @@
             // 4. Create Event for Create
             this.attachCreateEvent()
 
-            // 5 ...
+            
             var elCompleteAll = document.querySelector('#complete-all')
             var elRemoveAll = document.querySelector('#remove-all')
             
+            // click button Complete All Todo
             elCompleteAll.addEventListener('click', e => {
                 e.preventDefault();
 
@@ -31,6 +32,7 @@
                 })
             })
 
+            // Click button Remove All Todo
             elRemoveAll.addEventListener('click', e => {
                 e.preventDefault()
 
@@ -42,15 +44,18 @@
             })
         },
 
+        // Get All Data from Local Storage
         getAllData(){
             return JSON.parse(localStorage.getItem(this.STORAGE_KEY)) || [];
         },
 
+        // Refresh Data from Local Storage
         refreshContent(data){
             localStorage.setItem(this.STORAGE_KEY,JSON.stringify(data))
             this.renderData()
         },
 
+        // Insert Todo from input form
         attachCreateEvent(){
             var form = document.querySelector('form#form-todo')
             var inputTodo = form.querySelector('input[name=todo]')
@@ -79,6 +84,7 @@
             })
         },
 
+        // Render or Show Data Todo
         renderData(){
             var data = this.getAllData()
             var todoContainer = document.querySelector('#todo-container')
@@ -94,6 +100,7 @@
             })
         },
 
+        // Default Data Todo
         generateDefaultData(){
             var dummies = []
             
@@ -109,7 +116,6 @@
         },
 
         // Generate Template something like
-
         tplItem(id, data){
             var elWrapper = document.createElement('div')
             elWrapper.classList.add('todo-item','list-item','is-clearfix')
@@ -153,6 +159,7 @@
             return elWrapper
         },
 
+        // Button Update Status Checkbox
         toggleCompleteEvent(e){
             var elCheckbox = e.target
             var elItemWrapper = elCheckbox.closest('.todo-item')
@@ -174,6 +181,7 @@
             }
         },
 
+        // Validation Delete Todo
         deleteEvent(e){
             e.preventDefault()
 
